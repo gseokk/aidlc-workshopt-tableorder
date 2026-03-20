@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: tableorder-backend
+  profiles:
+    active: dev
+
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs

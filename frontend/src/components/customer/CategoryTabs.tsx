@@ -1,0 +1,39 @@
+import type { MenuCategory } from '@/types'
+
+interface Props {
+  categories: MenuCategory[]
+  selectedId: number | null
+  onSelect: (id: number | null) => void
+}
+
+export function CategoryTabs({ categories, selectedId, onSelect }: Props) {
+  return (
+    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+      <button
+        data-testid="category-tab-all"
+        onClick={() => onSelect(null)}
+        className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors min-h-[44px] ${
+          selectedId === null
+            ? 'bg-orange-500 text-white'
+            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+        }`}
+      >
+        전체
+      </button>
+      {categories.map((cat) => (
+        <button
+          key={cat.id}
+          data-testid={`category-tab-${cat.id}`}
+          onClick={() => onSelect(cat.id)}
+          className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors min-h-[44px] ${
+            selectedId === cat.id
+              ? 'bg-orange-500 text-white'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          {cat.name}
+        </button>
+      ))}
+    </div>
+  )
+}
